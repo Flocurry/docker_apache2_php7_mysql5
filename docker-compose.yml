@@ -1,13 +1,8 @@
 version: '2'
 services:
-    # test_application:
-    #     container_name: application
-    #     image: www
-    #     volumes:
-    #         - ~/www/laravel:/var/www/html
     test_database:
         container_name: database
-        image: mysql
+        image: flocurry/mysql5.7:0.0.1
         ports:
             - 3306:3306
         environment:
@@ -22,22 +17,22 @@ services:
               ipv4_address: 192.168.0.7
     test_php:
         container_name: php
-        image: php7
-        volumes_from:
-            - test_application
+        image: flocurry/php7:0.0.1
+        volumes:
+            - ~/www/laravel:/var/www/html
         # Su le même réseau que la base car les 2 containers doivent communiquer
         networks:
             dock_net:
               ipv4_address: 192.168.0.6
     test_web:
         container_name: apache
-        image: apache2
+        image: flocurry/apache2:0.0.1
         ports:
             - 80:80
         environment:
             FPM_HOST: test_php:9000
-        volumes_from:
-            - test_application
+        volumes:
+            - ~/www/laravel:/var/www/html
         links:
             - test_php
         networks:
