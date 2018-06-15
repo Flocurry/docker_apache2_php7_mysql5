@@ -19,7 +19,7 @@ services:
         container_name: php
         image: flocurry/php7:0.0.1
         volumes:
-            - ~/www/laravel:/var/www/html
+            - ~/www/laravel/:/var/www/html/
         # Su le même réseau que la base car les 2 containers doivent communiquer
         networks:
             dock_net:
@@ -32,7 +32,7 @@ services:
         environment:
             FPM_HOST: test_php:9000
         volumes:
-            - ~/www/laravel:/var/www/html
+            - ~/www/laravel/:/var/www/html/
         links:
             - test_php
         networks:
