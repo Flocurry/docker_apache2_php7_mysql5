@@ -1,5 +1,5 @@
-# # Image mysql
-# # On part d'une image mysql/mysql-server
+# Image mysql
+# On part d'une image mysql/mysql-server
 FROM mysql/mysql-server:5.7
 
 MAINTAINER Florian DARRIGAND
