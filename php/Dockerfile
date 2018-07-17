@@ -4,9 +4,8 @@ FROM php:7.2.0-fpm
 
 MAINTAINER Florian DARRIGAND
 
-RUN apt-get update
-RUN apt-get install -y zip
-RUN docker-php-ext-install pdo_mysql
+RUN apt-get update && apt-get -y install zip libpng-dev
+RUN docker-php-ext-install pdo_mysql gd
 
 # Installation de composer
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
